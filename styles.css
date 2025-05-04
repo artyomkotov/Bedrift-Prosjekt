@@ -55,7 +55,6 @@ nav {
 .logo img {
     margin-left: 10px;
     margin-right: 10px;
-    border-radius: 50%;
 }
 
 nav ul {
@@ -123,6 +122,53 @@ footer {
     border-radius: 15px;
     animation: slideInFromBottom 1s ease-out 0.7s both;
 }
+
+/* Chat Input Styling */
+.chat-input-container {
+    display: flex;
+    align-items: center;
+    max-width: 600px;
+    margin: 20px auto;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+    height: 45px; /* Control the height explicitly */
+}
+
+#userInput {
+    flex: 1;
+    padding: 0 15px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    height: 100%;
+    background-color: white;
+    color: #333;
+}
+
+#userInput::placeholder {
+    color: #aaa;
+}
+
+#sendButton {
+    background-color: #4285f4;
+    color: white;
+    border: none;
+    height: 100%;
+    padding: 0 20px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#sendButton:hover {
+    background-color: #3367d6;
+}
+
+
 
 /* Animation Keyframes */
 @keyframes fadeIn {
