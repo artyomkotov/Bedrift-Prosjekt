@@ -1,35 +1,5 @@
-body {
-    background-color: #181818;
-    font-family: Arial, sans-serif;
-    color: white;
-    animation: fadeIn 1s ease-out;
-}
+/* Navigation */
 
-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;    
-    background-color: rgba(32, 32, 32, 0.5); /* Using rgba for background opacity */
-    padding-bottom: 150px;
-    margin-bottom: 15px;
-    text-align: center;
-    min-height: 450px;
-    animation: fadeIn 1.2s ease-out;
-}
-
-header h1 {
-    font-size: 50px;
-    margin: 0;
-    color: white;
-    /* Removed opacity: 1 as it's the default value */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    animation: slideInFromTop 1s ease-out 0.3s both;
-}
-
-main {
-    display: flex;
-    height: 100vh;
-}
 
 nav {
     background-color: #202020;
@@ -70,18 +40,40 @@ nav ul li a {
     color: white;
     text-decoration: none;
     padding: 15px 25px;
-    border-radius: 5px;
+    border-radius: 8px;
     background-color: #140152;
-    /* Add base transition properties for smooth effect */
-    transition: all 0.3s ease-in-out;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: inline-block;
+    width: 100px; /* Fixed width for all buttons */
+    text-align: center;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 nav ul li a:hover {
     background-color: #04052E;
-    border-radius: 8px;
-    font-size: 18px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(20, 1, 82, 0.4);
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #ffffff;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+}
+
+nav ul li a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
 }
 
 nav ul li {
@@ -90,14 +82,204 @@ nav ul li {
     animation: fadeIn 1s ease-out calc(0.4s + var(--i, 0) * 0.1s) both;
 }
 
+.hamburger {
+    display: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 100;
+}
+
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+body {
+    background-color: #000000;
+    font-family: Arial, sans-serif;
+    color: white;
+    animation: fadeIn 1s ease-out;
+}
+
+/* Header */
+
+header {
+    display: flex;
+    flex-direction: column; /* Add this line to stack elements vertically */
+    justify-content: center;
+    align-items: center;    
+    background-color: rgba(0, 0, 0, 0.5); /* Using rgba for background opacity */
+    padding-bottom: 50px;
+    margin-bottom: 15px;
+    text-align: center;
+    min-height: 450px;
+    animation: fadeIn 1.2s ease-out;
+}
+
+header #team {
+    font-size: 15px;
+    margin: 0 0 15px 0; /* Add bottom margin to create space between p and h1 */
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    animation: slideInFromTop 1s ease-out 0.3s both;
+    order: -1; /* This ensures the paragraph appears before the heading */
+}
+
+header h1 {
+    font-size: 50px;
+    margin: 0;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    animation: slideInFromTop 1s ease-out 0.5s both; /* Slightly delay the h1 animation */
+}
+
+header #subheader {
+    font-size: 15px;
+    margin: 25px 10px 10px 0; /* Add bottom margin to create space between p and h1 */
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    animation: slideInFromTop 1s ease-out 0.3s both;
+    order: 2; /* This ensures the paragraph appears before the heading */
+}
+
+header #getStarted {
+    font-size: 16px;
+    margin: 35px 0 0 0;
+    background-color: #140152;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 15px 35px;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    animation: slideInFromTop 1s ease-out 0.3s both;
+    order: 3;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 15px rgba(20, 1, 82, 0.5);
+    z-index: 1;
+}
+
+header #getStarted::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+    z-index: -1;
+}
+
+header #getStarted:hover {
+    background-color: #04052E;
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(20, 1, 82, 0.6);
+}
+
+header #getStarted:hover::before {
+    left: 100%;
+}
+
+/* Bullet point cards */
+
+#bulletpoints {
+    text-align: center;
+    margin-top: 20px;
+    animation: slideInFromTop 1s ease-out 0.4s both;
+}
+
+.bullet-points-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+    gap: 30px; /* space between the columns */
+    max-width: 1200px;
+    margin-bottom: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bullet-point {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.bullet-point img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 15px;
+    background-color: white;
+    border-radius: 50%;
+    rotate: 5deg;
+}
+
+.bullet-point h3 {
+    margin-bottom: 10px;
+    font-size: 1.5em;
+}
+
+.bullet-point p {
+    font-size: 1em;
+}
+
+
+/* About and chat section */
+
+
+#contentchatfield {
+    display: flex;
+    flex-direction: row; /* Keep content and chat side by side */
+    height: auto;
+    min-height: 100vh;
+    padding: 0 10px; /* Add padding to container to prevent edge cutting */
+    box-sizing: border-box; /* Include padding in width calculation */
+    width: 100%; /* Ensure container takes full width */
+}
+
 #content {
-    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     padding: 20px;
     background-color: #202020;
     border-radius: 20px;
-    margin-right: 10px;
-    margin-left: 10px;
+    margin: 0 5px 10px 0; /* Adjust margins */
     animation: scaleIn 1s ease-out 0.5s both;
+    width: 80%; /* Fixed width for the content section */
+    font-size: clamp(14px, 1vw, 18px);
+    line-height: 1.6;
+    box-sizing: border-box;
+}
+
+.content-container {
+    text-align: left;
+    padding: 0 15px;
+}
+
+.content-container p {
+    margin-bottom: 1rem;
+}
+
+#placeholderimg {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 20px;
+    margin-right: 0;
+    margin-left: 0;
+    padding: 15px;
+    box-sizing: border-box;
+    animation: slideInFromLeft 1s ease-out 0.5s both;
 }
 
 #chat {
@@ -108,25 +290,18 @@ nav ul li {
     padding: 20px;
     border-radius: 20px;
     background-color: #202020;
-    width: 20%;
-    margin-right: 10px;
+    width: 20%; /* Fixed width for chat section */
+    margin: 0 0 10px 5px; /* Adjust margins */
     min-height: 300px;
     animation: slideInFromRight 1s ease-out 0.6s both;
+    box-sizing: border-box;
 } 
-
-footer {
-    display: flex;
-    justify-content: center;
-    background-color: #202020;
-    margin: 10px;
-    border-radius: 15px;
-    animation: slideInFromBottom 1s ease-out 0.7s both;
-}
 
 /* Chat Input Styling */
 .chat-input-container {
     display: flex;
     align-items: center;
+    width: 100%;
     max-width: 600px;
     margin: 20px auto;
     position: relative;
@@ -135,6 +310,7 @@ footer {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     border: 1px solid #e0e0e0;
     height: 45px; /* Control the height explicitly */
+    box-sizing: border-box;
 }
 
 #userInput {
@@ -169,6 +345,192 @@ footer {
 }
 
 
+footer {
+    display: flex;
+    justify-content: center;
+    background-color: #202020;
+    margin: 10px;
+    border-radius: 15px;
+    animation: slideInFromBottom 1s ease-out 0.7s both;
+}
+
+/* Responsive design */
+@media screen and (max-width: 1200px) {
+    #contentchatfield {
+        flex-direction: column;
+        padding: 0 10px;
+    }
+    
+    #content {
+        width: 100%;
+        margin: 0 0 10px 0;
+    }
+    
+    #chat {
+        width: 100%;
+        margin: 10px 0;
+    }
+    
+    .chat-input-container {
+        max-width: 90%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    /* Adjust layout while maintaining side-by-side for content and chat */
+    #content {
+        grid-template-columns: 1fr; /* Single column for content on medium screens */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        padding: 0;
+        margin: 0;
+        width: 100vw;
+        overflow-x: hidden; /* Prevent horizontal scrolling */
+    }
+    
+    main {
+        width: 100%;
+        padding: 0 5px;
+        box-sizing: border-box;
+    }
+    
+    #contentchatfield {
+        width: 100%;
+        padding: 0 5px;
+    }
+    
+    /* Make sure elements don't overflow their containers */
+    #content, #chat {
+        width: 100%;
+        max-width: 100%;
+        margin: 10px 0;
+        padding: 15px;
+    }
+    
+    /* Make the chat input more mobile-friendly */
+    .chat-input-container {
+        max-width: 100%;
+        height: 40px;
+    }
+    
+    #userInput {
+        font-size: 12px;
+    }
+    
+    #sendButton {
+        padding: 0 10px;
+        font-size: 12px;
+    }
+
+    /* Navigation hamburger menu for mobile */
+    nav {
+        position: relative;
+        margin: 5px;
+        width: calc(100% - 10px);
+        box-sizing: border-box;
+    }
+    
+    .hamburger {
+        display: block; /* Show hamburger on small screens */
+    }
+    
+    nav ul {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Start off-screen */
+        height: 100vh;
+        width: 70%;
+        flex-direction: column;
+        background-color: #202020;
+        z-index: 99;
+        transition: right 0.5s ease; /* Animation for sliding in */
+        padding-top: 60px;
+        align-items: center;
+        justify-content: flex-start;
+    }
+    
+    /* When menu is active, slide it in from right */
+    nav ul.active {
+        right: 0;
+    }
+    
+    nav ul li {
+        margin: 15px 0;
+    }
+    
+    nav ul li a {
+        width: 80px;
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+    
+    header #getStarted {
+        padding: 12px 25px;
+        font-size: 14px;
+    }
+    
+    /* Transform hamburger to X when active */
+    .hamburger.active div:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    
+    .hamburger.active div:nth-child(2) {
+        opacity: 0; /* Hide middle line */
+    }
+    
+    .hamburger.active div:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+    
+    /* Adjust header text size for mobile */
+    header h1 {
+        font-size: clamp(30px, 6vw, 50px);
+    }
+    
+    /* Stack bullet points vertically on mobile */
+    .bullet-points-container {
+        grid-template-columns: 1fr;
+        max-width: 90%;
+    }
+}
+
+/* Additional breakpoint for very small screens */
+@media screen and (max-width: 480px) {
+    nav {
+        padding: 5px;
+    }
+    
+    .logo h1 {
+        font-size: 20px;
+    }
+    
+    header h1 {
+        font-size: clamp(24px, 5vw, 30px);
+        padding: 0 10px;
+    }
+    
+    #content, #chat {
+        padding: 10px;
+    }
+    
+    .chat-input-container {
+        height: 35px;
+    }
+    
+    nav ul li a {
+        width: 70px;
+        padding: 10px;
+        font-size: 12px;
+    }
+    
+    header #getStarted {
+        padding: 10px 20px;
+        font-size: 13px;
+    }
+}
 
 /* Animation Keyframes */
 @keyframes fadeIn {

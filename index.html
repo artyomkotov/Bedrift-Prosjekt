@@ -12,6 +12,11 @@
             <img width="62px" height="62px" src="logo.png" alt="Logo">
             <h1>Pathfinder</h1>
         </div>
+        <div class="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
         <ul>
             <li><a href="#chat">Chat</a></li>
             <li><a href="#services">Services</a></li>
@@ -19,34 +24,62 @@
         </ul>   
     </nav>
     <header>
-        <h1>Welcome</h1>
+        <p id="team">Pathfinder Team</p>
+        <h1>Supercharge your learning with Pathfinder</h1>
+        <p id="subheader">Built for beginners and professionals, Pathfinder is your go-to tool for learning coding, analyzing and understanding documentation.</p>
+        <button id="getStarted">Get Started⤴</button>
     </header>
     <main>
-        <section id="content">
-            <h2>About Pathfinder</h2>
-            <div class="content-container">
-                <p>Pathfinder was created with a simple idea in mind: learning to code should feel clear, approachable, and inspiring — not confusing and overwhelming.</p>
-                
-                <p>We built Pathfinder as a place where you can find up-to-date, easy-to-read documentation for the most popular languages and frameworks, all in one spot. But we knew that docs alone aren't always enough, especially when you're just starting out or hitting walls you don't know how to break through.</p>
-                
-                <p><strong>That's where our AI comes in.</strong></p>
-                
-                <p>Unlike other AI tools that try to spit out code for you, Pathfinder's AI is designed to teach. It reads from the same updated docs you do, so it's always in sync with the latest changes and best practices — no more getting half-answers based on outdated information. Its only goal is to help you understand concepts, walk you through docs, and guide you as you build real knowledge for yourself.</p>
-                
-                <p>The core of Pathfinder is free because we believe everyone deserves access to good learning tools. Ads keep the lights on, but if you ever want an ad-free experience, it's $2.50 a month. And if you want unlimited use of the AI tutor, it's $5 a month — that's it.</p>
-                
-                <p>Pathfinder isn't about cutting corners or taking shortcuts. It's about building the skills, the understanding, and the confidence you need to make something real.</p>
-                
-                <p><em>We're here to help you find your own way.</em></p>
+        <section id="bulletpoints">
+            <h2>Why Pathfinder?</h2>
+            <div class="bullet-points-container">
+                <div class="bullet-point">
+                    <img src="/rsc/lightning.png" alt="Icon 1">
+                    <h3>Learn Faster</h3>
+                    <p>Get instant answers to your coding questions and learn at your own pace.</p>
+                </div>
+                <div class="bullet-point">
+                    <img src="/rsc/update.webp" alt="Icon 2">
+                    <h3>Stay Updated</h3>
+                    <p>Access the latest documentation and best practices in real-time.</p>
+                </div>
+                <div class="bullet-point">
+                    <img src="/rsc/confidence.png" alt="Icon 3">
+                    <h3>Build Confidence</h3>
+                    <p>Practice coding with guided tutorials and hands-on projects.</p>
+                </div>
             </div>
         </section>
-        <section id="chat">
-            <h2>Chat with Pathfinder</h2>
-            <div class="chat-input-container">
-                <input type="text" id="userInput" placeholder="Type your message here...">
-                <button id="sendButton">Send</button>
-            </div>
-            <div id="chatWindow"></div>
+
+        <section id="contentchatfield">
+            <section id="content">
+                <div class="content-container">
+                    <h2>About Pathfinder</h2>
+                    <p>Pathfinder was created with a simple idea in mind: learning to code should feel clear, approachable, and inspiring — not confusing and overwhelming.</p>
+                    
+                    <p>We built Pathfinder as a place where you can find up-to-date, easy-to-read documentation for the most popular languages and frameworks, all in one spot. But we knew that docs alone aren't always enough, especially when you're just starting out or hitting walls you don't know how to break through.</p>
+                    
+                    <p><strong>That's where our AI comes in.</strong></p>
+                    
+                    <p>Unlike other AI tools that try to spit out code for you, Pathfinder's AI is designed to teach. It reads from the same updated docs you do, so it's always in sync with the latest changes and best practices — no more getting half-answers based on outdated information. Its only goal is to help you understand concepts, walk you through docs, and guide you as you build real knowledge for yourself.</p>
+                    
+                    <p>The core of Pathfinder is free because we believe everyone deserves access to good learning tools. Ads keep the lights on, but if you ever want an ad-free experience, it's $2.50 a month. And if you want unlimited use of the AI tutor, it's $5 a month — that's it.</p>
+                    
+                    <p>Pathfinder isn't about cutting corners or taking shortcuts. It's about building the skills, the understanding, and the confidence you need to make something real.</p>
+                    
+                    <p><em>We're here to help you find your own way.</em></p>
+
+                </div>
+                <img id="placeholderimg" src="rsc/placeholder.png" alt="Placeholder">
+            </section>
+            <section id="chat">
+                <h2>Chat with Pathfinder</h2>
+                <div class="chat-input-container">
+                    <input type="text" id="userInput" placeholder="Type your message here...">
+                    <button id="sendButton">Send</button>
+                </div>
+                <div id="chatWindow"></div>
+            </section>
         </section>
     </main>
     <footer>
