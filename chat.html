@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with Pathfinder AI</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="chat-styles.css">
+    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+</head>
+<body class="chat-page">
+    <nav>
+        <div class="logo">
+            <img width="50px" height="50px" src="logo.png" alt="Logo">
+            <h1>Pathfinder</h1>
+        </div>
+        <div class="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="chat-container">
+        <aside class="chat-sidebar">
+            <div class="new-chat">
+                <button id="newChatBtn">+ New Chat</button>
+            </div>
+            <div class="chat-history">
+                <div class="history-item active">
+                    <span>Current Chat</span>
+                    <button class="delete-chat">×</button>
+                </div>
+                <!-- More history items would appear here -->
+            </div>
+        </aside>
+
+        <main class="chat-main">
+            <div class="chat-messages" id="chatMessages">
+                <!-- Initial welcome message -->
+                <div class="message ai-message">
+                    <div class="message-avatar">
+                        <img src="logo.png" alt="Pathfinder AI">
+                    </div>
+                    <div class="message-content">
+                        <p>Hello! I'm Pathfinder AI, your coding assistant. How can I help you with your coding journey today?</p>
+                    </div>
+                </div>
+                <!-- User messages will be added here dynamically -->
+            </div>
+
+            <div class="chat-input-wrapper">
+                <div class="chat-input-container">
+                    <input type="text" id="userInput" placeholder="Type your message here...">
+                    <button id="sendButton">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="chat-script.js"></script>
+</body>
+</html>
