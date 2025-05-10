@@ -1,16 +1,28 @@
 /* Chat Page Specific Styles */
+:root {
+    --vh: 1vh;
+}
+
 .chat-page {
     background-color: #000000;
     overflow: hidden;
     animation: fadeIn 0.5s ease-out;
+    height: 100vh;
+    width: 100vw;
 }
 
 /* Improved navigation bar for better scaling */
 .chat-page nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
     padding: 8px 15px;
     flex-wrap: wrap;
     min-height: 70px;
     align-items: center;
+    background-color: #202020;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .chat-page .logo {
@@ -47,12 +59,12 @@
 /* Chat Layout */
 .chat-container {
     display: flex;
-    height: calc(100vh - 90px); /* Adjust based on nav height */
-    width: calc(100% - 20px); /* Match with nav bar width */
+    height: calc(var(--vh, 1vh) * 100 - 70px);
+    width: 100%;
     background-color: #111111;
     overflow: hidden;
-    margin: 0 10px 10px 10px; /* Match with nav bar margins */
-    border-radius: 20px; /* Add border-radius to match nav bar styling */
+    margin: 0;
+    border-radius: 0;
 }
 
 /* Chat Sidebar */
@@ -64,8 +76,6 @@
     flex-direction: column;
     overflow-y: auto;
     transition: all 0.3s ease;
-    border-top-left-radius: 20px; /* Round the left corners */
-    border-bottom-left-radius: 20px;
 }
 
 .new-chat {
@@ -140,17 +150,18 @@
     overflow: hidden;
     position: relative;
     background-color: #151515;
-    border-top-right-radius: 20px; /* Round the right corners */
-    border-bottom-right-radius: 20px;
 }
 
 .chat-messages {
     flex: 1;
     overflow-y: auto;
     padding: 20px 10%;
+    padding-top: 70px;
+    padding-bottom: 80px;
     display: flex;
     flex-direction: column;
     gap: 24px;
+    height: calc(100vh - 150px);
 }
 
 /* Messages */
@@ -254,19 +265,20 @@
 
 /* Chat Input Area */
 .chat-input-wrapper {
-    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
     background-color: #151515;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+    z-index: 100;
     animation: slideInFromBottom 0.5s ease-out;
 }
 
 .chat-input-container {
     display: flex;
     align-items: center;
-    width: 80%;
+    width: 95%;
     max-width: 800px;
     margin: 0 auto;
     border-radius: 10px;
@@ -312,17 +324,21 @@
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {
+    .chat-page {
+        overflow-x: hidden;
+    }
+    
     .chat-page nav ul {
         position: fixed;
-        top: 0;
+        top: 70px;
         right: -100%;
-        height: 100vh;
-        width: 50%; /* Reduced from 70% to be less wide */
+        height: calc(100vh - 70px);
+        width: 70%;
         flex-direction: column;
         background-color: #202020;
         z-index: 99;
         transition: right 0.5s ease;
-        padding-top: 60px;
+        padding-top: 20px;
         align-items: center;
         justify-content: flex-start;
         box-shadow: -3px 0 15px rgba(0, 0, 0, 0.5);
@@ -333,35 +349,32 @@
     }
     
     .chat-sidebar {
-        position: absolute;
+        position: fixed;
+        top: 70px;
         left: -260px;
-        z-index: 10;
-        height: 100%;
+        height: calc(100vh - 70px);
+        z-index: 98;
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-        border-radius: 20px 0 0 20px;
     }
 
     .chat-sidebar.active {
         left: 0;
-        z-index: 9; /* Lower than nav menu to prevent overlap issues */
     }
     
     .chat-messages {
         padding: 20px 16px;
+        padding-top: 20px;
+        padding-bottom: 80px;
     }
     
     .chat-input-container {
-        width: 90%;
+        width: 95%;
     }
     
     .message-content {
         max-width: 90%;
     }
     
-    .chat-messages {
-        padding: 20px 5%;
-    }
-
     .chat-page nav {
         padding: 5px 10px;
     }
@@ -377,9 +390,13 @@
     }
     
     .chat-container {
-        height: calc(100vh - 80px);
-        width: calc(100% - 10px);
-        margin: 0 5px 5px 5px;
+        height: calc(var(--vh, 1vh) * 100 - 70px);
+        width: 100%;
+        margin: 0;
+    }
+    
+    .hamburger {
+        display: block;
     }
 }
 
@@ -389,12 +406,28 @@
     }
     
     .chat-page nav ul {
-        width: 30%; /* For very small screens, increase width for better tap targets */
+        width: 80%;
     }
     
     .chat-page nav ul li a {
-        padding: 6px 10px;
-        font-size: 12px;
+        padding: 10px 15px;
+        font-size: 14px;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .chat-input-container {
+        height: 45px;
+    }
+    
+    #userInput {
+        font-size: 14px;
+        padding: 0 15px;
+    }
+    
+    .chat-messages {
+        padding: 15px 10px;
+        padding-bottom: 70px;
     }
 }
 

@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // DeepSeek API configuration
     const DEEPSEEK_API_URL = 'https://api.deepseek.com/v1/chat/completions';  // Replace with actual API endpoint
-    const DEEPSEEK_API_KEY = '';  // Replace with your actual API key
+    const DEEPSEEK_API_KEY = 'sk-a96766c985f848d1a4031696c0c8e247';  // Replace with your actual API key
     
     // Custom instructions for the AI - only set in code
     const CUSTOM_AI_INSTRUCTIONS = `
@@ -499,3 +499,11 @@ style.textContent = `
 }
 `;
 document.head.appendChild(style);
+
+// Handle mobile viewport height
+function updateViewportHeight() {
+    document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+}
+
+window.addEventListener('resize', updateViewportHeight);
+updateViewportHeight();
