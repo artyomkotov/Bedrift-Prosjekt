@@ -389,7 +389,7 @@
     }
     
     .chat-page nav ul {
-        width: 70%; /* For very small screens, increase width for better tap targets */
+        width: 30%; /* For very small screens, increase width for better tap targets */
     }
     
     .chat-page nav ul li a {
