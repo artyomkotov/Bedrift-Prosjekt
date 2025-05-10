@@ -1,4 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Add viewport meta tag to ensure proper scaling on mobile devices
+    if (!document.querySelector('meta[name="viewport"]')) {
+        const viewportMeta = document.createElement('meta');
+        viewportMeta.name = 'viewport';
+        viewportMeta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+        document.head.appendChild(viewportMeta);
+    }
+    
     // Hamburger menu for responsive design
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('nav ul');
@@ -12,6 +20,30 @@ document.addEventListener('DOMContentLoaded', function() {
                 chatSidebar.classList.toggle('active');
             }
         });
+        
+        // Fix for Firefox Android - ensure the menu is visible when hamburger is clicked
+        if (navigator.userAgent.indexOf('Firefox') !== -1 && navigator.userAgent.indexOf('Android') !== -1) {
+            hamburger.addEventListener('click', function() {
+                navMenu.style.display = navMenu.classList.contains('active') ? 'flex' : 'none';
+            });
+        }
+    }
+    
+    // Check if we're on mobile
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    if (isMobile) {
+        // Adjust input field and send button for mobile devices
+        const chatInputArea = document.querySelector('.chat-input-area');
+        if (chatInputArea) {
+            chatInputArea.style.maxWidth = '100%';
+            chatInputArea.style.padding = '10px 5px';
+        }
+        
+        const userInput = document.getElementById('userInput');
+        if (userInput) {
+            userInput.style.width = 'calc(100% - 50px)';
+            userInput.style.fontSize = '16px'; // Prevent zoom on input focus
+        }
     }
     
     // Chat functionality
@@ -460,6 +492,75 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize the chat sidebar on page load
     updateChatSidebar();
 });
+
+// Add responsive styles to the page
+const responsiveStyles = document.createElement('style');
+responsiveStyles.textContent = `
+@media screen and (max-width: 768px) {
+    .chat-container {
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+    }
+    
+    .chat-input-area {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        background-color: white;
+        z-index: 100;
+    }
+    
+    #userInput {
+        width: calc(100% - 50px);
+        font-size: 16px;
+    }
+    
+    .message {
+        max-width: 90%;
+    }
+    
+    nav ul {
+        width: 100%;
+        top: 60px;
+    }
+    
+    /* Fix for Firefox Android */
+    @supports (-moz-appearance:none) and (display:contents) {
+        nav ul.active {
+            display: flex !important;
+            flex-direction: column;
+            position: absolute;
+            width: 100%;
+        }
+    }
+}
+
+/* Android specific fixes */
+@media screen and (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2), 
+       screen and (max-width: 768px) and (min-resolution: 192dpi) {
+    body {
+        touch-action: manipulation;
+    }
+    
+    .chat-sidebar {
+        width: 80%;
+        transform: translateX(-100%);
+    }
+    
+    .chat-sidebar.active {
+        transform: translateX(0);
+    }
+    
+    .chat-messages {
+        padding-bottom: 70px; /* Give space for fixed input area */
+    }
+}
+`;
+document.head.appendChild(responsiveStyles);
 
 // Add typing indicator styles to the page
 const style = document.createElement('style');
