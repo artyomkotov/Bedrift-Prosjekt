@@ -360,6 +360,22 @@ footer {
     transition: opacity 0.3s ease-out;
 }
 
+/* Logo link styling */
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+    display: contents; /* Maintains the layout structure */
+}
+
+.logo-link:hover {
+    text-decoration: none;
+}
+
+/* If there are any existing hover effects on the logo, this preserves them */
+.logo-link:hover .logo h1 {
+    color: inherit; /* This keeps the text color consistent */
+}
+
 /* Responsive design */
 @media screen and (max-width: 1200px) {
     #contentchatfield {
