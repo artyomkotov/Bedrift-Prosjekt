@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const newChatBtn = document.getElementById('newChatBtn');
     
     // DeepSeek API configuration
-    var DEEPSEEK_API_URL = 'https://api.deepseek.com/v1/chat/completions';  // Replace with actual API endpoint
-    var DEEPSEEK_API_KEY = '';  // Replace with your actual API key
+    const DEEPSEEK_API_URL = 'https://api.deepseek.com/v1/chat/completions';  // Replace with actual API endpoint
+    const DEEPSEEK_API_KEY = '';  // Replace with your actual API key
     
     // Custom instructions for the AI - only set in code
     const CUSTOM_AI_INSTRUCTIONS = `
@@ -56,17 +56,25 @@ document.addEventListener('DOMContentLoaded', function() {
     let chats = loadChats();
     let currentChatId = localStorage.getItem('currentChatId');
     
-    // If no current chat, create a new one
-    if (!currentChatId || !chats[currentChatId]) {
-        createNewChat();
-    } else {
+    // Don't create a new chat on page load, just show the empty state if no chat exists
+    if (currentChatId && chats[currentChatId]) {
         // Load the current chat
         loadChat(currentChatId);
+    } else {
+        // Show empty state instead of creating a new chat automatically
+        currentChatId = null;
+        localStorage.removeItem('currentChatId');
+        showEmptyState();
     }
     
     // Check if there's an initial message from the landing page
     const initialMessage = sessionStorage.getItem('initialMessage');
     if (initialMessage) {
+        // If there's an initial message, we do need to create a new chat to handle it
+        if (!currentChatId) {
+            createNewChat();
+        }
+        
         // Add the user's initial message
         addMessage(initialMessage, 'user');
         
@@ -89,6 +97,23 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to save chats to localStorage
     function saveChats(chats) {
         localStorage.setItem('pathfinderChats', JSON.stringify(chats));
+    }
+    
+    // Function to show empty state when no chat is selected
+    function showEmptyState() {
+        chatMessages.innerHTML = '';
+        
+        const emptyStateDiv = document.createElement('div');
+        emptyStateDiv.className = 'empty-chat-state';
+        emptyStateDiv.innerHTML = `
+            <div class="empty-state-content">
+                <img src="logo.png" alt="Pathfinder AI" class="empty-state-logo">
+                <h2>Welcome to Pathfinder AI</h2>
+                <p>Your coding journey starts here. Click the "New Chat" button to begin a conversation.</p>
+            </div>
+        `;
+        
+        chatMessages.appendChild(emptyStateDiv);
     }
     
     // Function to create a new chat
@@ -120,6 +145,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Function to load a specific chat
     function loadChat(chatId) {
+        if (!chats[chatId]) {
+            return;
+        }
+        
         currentChatId = chatId;
         localStorage.setItem('currentChatId', chatId);
         
@@ -139,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Function to save a message to the current chat
     function saveMessage(content, sender) {
-        if (!chats[currentChatId]) {
+        if (!currentChatId || !chats[currentChatId]) {
             createNewChat();
         }
         
@@ -432,6 +461,11 @@ document.addEventListener('DOMContentLoaded', function() {
     function sendMessage() {
         const text = userInput.value.trim();
         if (text !== '') {
+            // If no chat is active, create a new one when the user sends a message
+            if (!currentChatId || !chats[currentChatId]) {
+                createNewChat();
+            }
+            
             // Add user message to UI
             addMessage(text, 'user');
             
@@ -462,18 +496,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 delete chats[chatId];
                 saveChats(chats);
                 
-                // If we deleted the current chat, create a new one
+                // If we deleted the current chat, clear the currentChatId and show empty state
                 if (chatId === currentChatId) {
-                    createNewChat();
-                } else {
-                    updateChatSidebar();
+                    currentChatId = null;
+                    localStorage.removeItem('currentChatId');
+                    showEmptyState();
                 }
+                
+                // Update sidebar to reflect changes
+                updateChatSidebar();
             }
         }
     });
     
-    // Initialize the chat sidebar on page load
+    // Initialize the chat sidebar on page load and check if we need to show the empty state
     updateChatSidebar();
+    
+    // If no current chat after initialization, show empty state
+    if (!currentChatId || !chats[currentChatId]) {
+        showEmptyState();
+    }
     
     // Mobile sidebar and nav menu handling
     function setupMobileMenuHandling() {
@@ -580,6 +622,46 @@ style.textContent = `
 }
 `;
 document.head.appendChild(style);
+
+// Add styling for empty state
+const emptyStateStyle = document.createElement('style');
+emptyStateStyle.textContent = `
+.empty-chat-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #888;
+    text-align: center;
+    padding: 20px;
+}
+
+.empty-state-content {
+    max-width: 400px;
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.empty-state-logo {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+    opacity: 0.7;
+}
+
+.empty-state-content h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #aaa;
+}
+
+.empty-state-content p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #777;
+}
+`;
+document.head.appendChild(emptyStateStyle);
 
 // Handle mobile viewport height
 function updateViewportHeight() {
