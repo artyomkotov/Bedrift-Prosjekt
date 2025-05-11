@@ -185,6 +185,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
+        
+        // Initialize mobile menu handling after updating the sidebar
+        setupMobileMenuHandling();
     }
     
     // Update active chat in sidebar
@@ -459,6 +462,72 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize the chat sidebar on page load
     updateChatSidebar();
+    
+    // Mobile sidebar and nav menu handling
+    function setupMobileMenuHandling() {
+        // Create backdrop element for closing menus when clicking outside
+        const backdrop = document.createElement('div');
+        backdrop.className = 'mobile-backdrop';
+        document.body.appendChild(backdrop);
+        
+        backdrop.addEventListener('click', function() {
+            // Close all mobile menus when backdrop is clicked
+            if (hamburger) hamburger.classList.remove('active');
+            if (navMenu) navMenu.classList.remove('active');
+            if (chatSidebar) chatSidebar.classList.remove('active');
+            backdrop.classList.remove('active');
+        });
+        
+        // Make hamburger toggle the backdrop
+        if (hamburger) {
+            const originalClickHandler = hamburger.onclick;
+            hamburger.onclick = function(e) {
+                // Toggle backdrop when menu is opened
+                if (!hamburger.classList.contains('active')) {
+                    backdrop.classList.add('active');
+                } else {
+                    backdrop.classList.remove('active');
+                }
+            };
+        }
+        
+        // Auto-hide menus when a chat is selected on mobile
+        document.querySelectorAll('.history-item').forEach(item => {
+            const originalClickHandler = item.onclick;
+            
+            item.addEventListener('click', function(e) {
+                if (!e.target.classList.contains('delete-chat')) {
+                    // Hide mobile menus when a chat is selected
+                    if (window.innerWidth <= 768) {
+                        if (navMenu) {
+                            navMenu.classList.add('hide-on-selection');
+                            setTimeout(() => {
+                                navMenu.classList.remove('active');
+                                navMenu.classList.remove('hide-on-selection');
+                            }, 300);
+                        }
+                        
+                        if (chatSidebar) {
+                            chatSidebar.classList.add('hide-on-selection');
+                            setTimeout(() => {
+                                chatSidebar.classList.remove('active');
+                                chatSidebar.classList.remove('hide-on-selection');
+                            }, 300);
+                        }
+                        
+                        if (hamburger) {
+                            hamburger.classList.remove('active');
+                        }
+                        
+                        backdrop.classList.remove('active');
+                    }
+                }
+            });
+        });
+    }
+    
+    // Initialize the mobile menu handling
+    setupMobileMenuHandling();
 });
 
 // Add typing indicator styles to the page
