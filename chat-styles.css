@@ -134,7 +134,6 @@ nav {
     transition: all 0.3s ease;
     animation: slideInFromLeft 0.8s ease-out forwards;
     position: relative; /* Changed from absolute */
-    z-index: 10;
     height: 100%;
 }
 
@@ -399,7 +398,7 @@ nav {
         top: 70px;
         height: calc(100vh - 70px);
         width: 40%;
-        right: -200px;
+        right: -400px;
         flex-direction: column;
         background-color: #202020;
         z-index: 99;
