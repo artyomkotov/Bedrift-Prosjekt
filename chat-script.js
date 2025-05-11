@@ -676,3 +676,38 @@ function updateViewportHeight() {
 
 window.addEventListener('resize', updateViewportHeight);
 updateViewportHeight();
+
+// Update the initializeChat function to ensure the welcome message is visible
+function initializeChat() {
+    // Load chats from localStorage
+    const savedChats = localStorage.getItem('chats');
+    if (savedChats) {
+        chats = JSON.parse(savedChats);
+    }
+
+    // Load saved current chat ID
+    const savedChatId = localStorage.getItem('currentChatId');
+    
+    // Update chat history in sidebar
+    updateChatHistory();
+    
+    // If there's a saved chat, load it
+    if (savedChatId && chats[savedChatId]) {
+        loadChat(savedChatId);
+    } else if (Object.keys(chats).length > 0) {
+        // Load the first chat if there's no current chat
+        loadChat(Object.keys(chats)[0]);
+    } else {
+        // Create a new chat if there are no chats
+        createNewChat();
+    }
+    
+    // Ensure welcome message is fully visible after DOM is fully rendered
+    setTimeout(() => {
+        chatMessages.scrollTop = 0; // First scroll to top
+        setTimeout(() => {
+            // Then scroll to see the full welcome message
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }, 50);
+    }, 100);
+}
