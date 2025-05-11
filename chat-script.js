@@ -160,6 +160,12 @@ document.addEventListener('DOMContentLoaded', function() {
             chat.messages.forEach(msg => {
                 addMessage(msg.content, msg.sender);
             });
+            
+            // Add a small delay to make sure the DOM is updated before scrolling
+            setTimeout(() => {
+                // Scroll to show the most recent messages
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 100);
         }
         
         // Update sidebar active state
