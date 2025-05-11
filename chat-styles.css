@@ -219,8 +219,7 @@ nav {
 .chat-messages {
     flex: 1;
     overflow-y: auto;
-    padding: 20px 10% 80px 10%;
-    padding-top: 40px; /* Add more padding at the top */
+    padding: 40px 10% 100px 10%;
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -432,7 +431,7 @@ nav {
     }
     
     .chat-messages {
-        padding: 20px 16px;
+        padding: 40px 16px;
         padding-bottom: 80px;
     }
     
@@ -499,8 +498,8 @@ nav {
     }
     
     .chat-messages {
-        padding: 15px 10px;
-        padding-bottom: 70px;
+        padding: 40px 10px;
+        padding-bottom: 90px;
     }
     
     .message {
