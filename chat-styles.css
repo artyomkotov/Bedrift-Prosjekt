@@ -511,6 +511,21 @@ nav {
     }
 }
 
+/* Utility class for delayed scrolling */
+.scroll-delayed-visible {
+    opacity: 0;
+    animation: fadeInUp 0.5s ease-out forwards;
+}
+
+.scroll-delayed-visible.visible {
+    opacity: 1;
+}
+
+/* For smooth scrolling behavior */
+.smooth-scroll {
+    scroll-behavior: smooth;
+}
+
 /* Initial state for animated elements */
 .chat-page nav,
 .chat-page .logo,

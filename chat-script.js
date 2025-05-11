@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Add a small delay to make sure the DOM is updated before scrolling
             setTimeout(() => {
                 // Scroll to show the most recent messages
-                chatMessages.scrollTop = chatMessages.scrollHeight;
+                scrollToBottomWithDelay();
             }, 100);
         }
         
@@ -310,7 +310,7 @@ document.addEventListener('DOMContentLoaded', function() {
         chatMessages.appendChild(messageDiv);
         
         // Scroll to the bottom
-        chatMessages.scrollTop = chatMessages.scrollHeight;
+        scrollToBottomWithDelay();
     }
     
     // Add a typing indicator to show AI is "thinking"
@@ -676,3 +676,32 @@ function updateViewportHeight() {
 
 window.addEventListener('resize', updateViewportHeight);
 updateViewportHeight();
+
+/**
+ * Scrolls to the bottom of chat messages with a delay to ensure content is rendered
+ * @param {number} delay - Delay in milliseconds before scrolling
+ */
+function scrollToBottomWithDelay(delay = 300) {
+    const chatMessages = document.querySelector('.chat-messages');
+    
+    // Mark new messages with the utility class if they don't already have it
+    const newMessages = chatMessages.querySelectorAll('.message:not(.visible)');
+    newMessages.forEach(message => {
+        message.classList.add('scroll-delayed-visible');
+        // Add visible class after a short delay
+        setTimeout(() => {
+            message.classList.add('visible');
+        }, 50);
+    });
+
+    // Delay the scroll to ensure content is rendered
+    setTimeout(() => {
+        chatMessages.classList.add('smooth-scroll');
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        
+        // Remove the smooth-scroll class after scrolling to avoid affecting other interactions
+        setTimeout(() => {
+            chatMessages.classList.remove('smooth-scroll');
+        }, 500);
+    }, delay);
+}
