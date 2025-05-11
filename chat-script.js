@@ -303,8 +303,14 @@ document.addEventListener('DOMContentLoaded', function() {
         
         chatMessages.appendChild(messageDiv);
         
-        // Scroll to the bottom
-        chatMessages.scrollTop = chatMessages.scrollHeight;
+        // Scroll to the bottom - improved to work better on mobile
+        setTimeout(() => {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            // On mobile, also scroll the window to ensure no gap at bottom
+            if (window.innerWidth <= 768) {
+                window.scrollTo(0, document.body.scrollHeight);
+            }
+        }, 10);
     }
     
     // Add a typing indicator to show AI is "thinking"
@@ -441,7 +447,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Send message when button is clicked
     if (sendButton) {
-        sendButton.addEventListener('click', sendMessage);
+        sendButton.addEventListener('click', function() {
+            sendMessage();
+            // Focus back on input after sending on mobile
+            if (window.innerWidth <= 768) {
+                setTimeout(() => {
+                    window.scrollTo(0, document.body.scrollHeight);
+                }, 100);
+            }
+        });
     }
     
     // Send message when Enter key is pressed
@@ -477,6 +491,13 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Get AI response
             getAIResponse(text);
+            
+            // On mobile, make sure we're scrolled to the bottom
+            if (window.innerWidth <= 768) {
+                setTimeout(() => {
+                    window.scrollTo(0, document.body.scrollHeight);
+                }, 100);
+            }
         }
     }
     
@@ -665,8 +686,94 @@ document.head.appendChild(emptyStateStyle);
 
 // Handle mobile viewport height
 function updateViewportHeight() {
-    document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+    // Set the --vh custom property to the viewport height
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+    
+    // For mobile, also adjust the chat container and messages area
+    if (window.innerWidth <= 768) {
+        const chatContainer = document.querySelector('.chat-container');
+        const chatMessages = document.getElementById('chatMessages');
+        const inputWrapper = document.querySelector('.chat-input-wrapper');
+        
+        if (chatContainer && chatMessages && inputWrapper) {
+            // Adjust container height to fill viewport minus navbar height
+            const navHeight = document.querySelector('nav')?.offsetHeight || 70;
+            chatContainer.style.height = `calc(${window.innerHeight}px - ${navHeight}px)`;
+            
+            // Adjust messages area to account for input height
+            const inputHeight = inputWrapper.offsetHeight;
+            chatMessages.style.paddingBottom = `${inputHeight + 20}px`;
+        }
+    }
 }
 
+// Add these event listeners for better mobile support
 window.addEventListener('resize', updateViewportHeight);
+window.addEventListener('orientationchange', updateViewportHeight);
+document.addEventListener('focusin', function(e) {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+        // When keyboard appears on mobile, adjust layout
+        setTimeout(updateViewportHeight, 100);
+    }
+});
+document.addEventListener('focusout', function(e) {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+        // When keyboard disappears, readjust
+        setTimeout(updateViewportHeight, 100);
+    }
+});
 updateViewportHeight();
+
+// Add additional mobile-specific styles
+const mobileFixStyle = document.createElement('style');
+mobileFixStyle.textContent = `
+@media screen and (max-width: 768px) {
+    html, body {
+        height: 100%;
+        overflow-x: hidden;
+        position: relative;
+    }
+    
+    .chat-page {
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .chat-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        max-height: calc(100vh - 70px);
+        max-height: calc(var(--vh, 1vh) * 100 - 70px);
+    }
+    
+    .chat-main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow-y: hidden;
+    }
+    
+    .chat-messages {
+        flex: 1;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .chat-input-wrapper {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: #151515;
+        padding: 10px;
+        box-sizing: border-box;
+        z-index: 100;
+        border-top: 1px solid #333;
+    }
+}
+`;
+document.head.appendChild(mobileFixStyle);
