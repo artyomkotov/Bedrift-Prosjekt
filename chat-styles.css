@@ -536,7 +536,6 @@ nav {
 .chat-main,
 .chat-messages,
 .chat-input-container,
-#userInput,
 #sendButton {
     opacity: 0;
 }
