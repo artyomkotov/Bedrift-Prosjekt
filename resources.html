@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources - Coding Resources & Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo-link">
+            <div class="logo">
+                <img width="62px" height="62px" src="logo.png" alt="Logo">
+                <h1>Pathfinder</h1>
+            </div>
+        </a>
+        <ul id="menu">
+            <li><a href="chat.html">Chat</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="resources-container">
+            <div class="resources-header">
+                <h2>Coding Resources & Documentation</h2>
+                <p>Find the best tutorials, documentation, and learning materials for your coding journey.</p>
+            </div>
+
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" id="resourceSearch" placeholder="Search for resources...">
+                    <button id="searchButton">Search</button>
+                </div>
+            </div>
+
+            <div class="category-filters">
+                <button class="category-btn active" data-category="all">All</button>
+                <button class="category-btn" data-category="javascript">JavaScript</button>
+                <button class="category-btn" data-category="html-css">HTML/CSS</button>
+                <button class="category-btn" data-category="python">Python</button>
+                <button class="category-btn" data-category="frameworks">Frameworks</button>
+                <button class="category-btn" data-category="tools">Dev Tools</button>
+            </div>
+
+            <div class="resources-grid" id="resourcesGrid">
+                <!-- Sample resource cards - you can easily add or update these -->
+                <div class="resource-card" data-categories="javascript,tools">
+                    <div class="resource-card-header">
+                        <img src="https://placehold.co/40" alt="MDN Logo">
+                        <h3>MDN Web Docs</h3>
+                    </div>
+                    <div class="resource-card-body">
+                        <p>Comprehensive documentation for web technologies including JavaScript, HTML, and CSS.</p>
+                        <div class="resource-tags">
+                            <span class="resource-tag">JavaScript</span>
+                            <span class="resource-tag">HTML</span>
+                            <span class="resource-tag">CSS</span>
+                            <span class="resource-tag">Reference</span>
+                        </div>
+                        <a href="https://developer.mozilla.org" target="_blank">Visit Resource</a>
+                    </div>
+                </div>
+
+                <div class="resource-card" data-categories="javascript,frameworks">
+                    <div class="resource-card-header">
+                        <img src="https://placehold.co/40" alt="React Logo">
+                        <h3>React Documentation</h3>
+                    </div>
+                    <div class="resource-card-body">
+                        <p>Official documentation for React, a JavaScript library for building user interfaces.</p>
+                        <div class="resource-tags">
+                            <span class="resource-tag">JavaScript</span>
+                            <span class="resource-tag">React</span>
+                            <span class="resource-tag">Frontend</span>
+                        </div>
+                        <a href="https://reactjs.org" target="_blank">Visit Resource</a>
+                    </div>
+                </div>
+
+                <div class="resource-card" data-categories="python">
+                    <div class="resource-card-header">
+                        <img src="https://placehold.co/40" alt="Python Logo">
+                        <h3>Python.org</h3>
+                    </div>
+                    <div class="resource-card-body">
+                        <p>The official home of the Python Programming Language with tutorials and documentation.</p>
+                        <div class="resource-tags">
+                            <span class="resource-tag">Python</span>
+                            <span class="resource-tag">Backend</span>
+                            <span class="resource-tag">Beginner</span>
+                        </div>
+                        <a href="https://python.org" target="_blank">Visit Resource</a>
+                    </div>
+                </div>
+
+                <div class="resource-card" data-categories="html-css,tools">
+                    <div class="resource-card-header">
+                        <img src="https://placehold.co/40" alt="W3Schools Logo">
+                        <h3>W3Schools</h3>
+                    </div>
+                    <div class="resource-card-body">
+                        <p>Web development tutorials with examples for HTML, CSS, JavaScript and many other languages.</p>
+                        <div class="resource-tags">
+                            <span class="resource-tag">HTML</span>
+                            <span class="resource-tag">CSS</span>
+                            <span class="resource-tag">Tutorials</span>
+                        </div>
+                        <a href="https://www.w3schools.com" target="_blank">Visit Resource</a>
+                    </div>
+                </div>
+
+                <div class="resource-card" data-categories="frameworks,javascript">
+                    <div class="resource-card-header">
+                        <img src="https://placehold.co/40" alt="Vue.js Logo">
+                        <h3>Vue.js Guide</h3>
+                    </div>
+                    <div class="resource-card-body">
+                        <p>The official guide and documentation for Vue.js, a progressive JavaScript framework.</p>
+                        <div class="resource-tags">
+                            <span class="resource-tag">JavaScript</span>
+                            <span class="resource-tag">Vue.js</span>
+                            <span class="resource-tag">Frontend</span>
+                        </div>
+                        <a href="https://vuejs.org" target="_blank">Visit Resource</a>
+                    </div>
+                </div>
+
+                <div class="resource-card" data-categories="tools">
+                    <div class="resource-card-header">
+                        <img src="https://placehold.co/40" alt="GitHub Logo">
+                        <h3>GitHub Guides</h3>
+                    </div>
+                    <div class="resource-card-body">
+                        <p>Learn how to use Git and GitHub effectively for your projects with these helpful guides.</p>
+                        <div class="resource-tags">
+                            <span class="resource-tag">Git</span>
+                            <span class="resource-tag">GitHub</span>
+                            <span class="resource-tag">Version Control</span>
+                        </div>
+                        <a href="https://guides.github.com" target="_blank">Visit Resource</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="no-results" id="noResults">
+                <h3>No resources found</h3>
+                <p>Try adjusting your search or filter criteria.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Pathfinder</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

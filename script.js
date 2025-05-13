@@ -1,20 +1,45 @@
 // Existing script code...
 
-// Hamburger menu functionality
+// Mobile Menu Toggle
 document.addEventListener('DOMContentLoaded', function() {
-    const hamburger = document.querySelector('.hamburger');
+    // Check if hamburger element exists (for pages that include the mobile menu)
+    const hamburger = document.getElementById('hamburger');
+    if (hamburger) {
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.getElementById('menu').classList.toggle('active');
+        });
+    }
+
+    // Resources page functionality
+    // Only initialize if we're on the resources page
+    if (document.querySelector('.resources-grid')) {
+        initializeResourcesPage();
+    }
+
+    // Page transition effect
+    window.addEventListener('pageshow', function() {
+        document.body.classList.remove('page-transition');
+    });
+    
+    window.addEventListener('beforeunload', function() {
+        document.body.classList.add('page-transition');
+    });
+
+    // Hamburger menu functionality
+    const hamburgerOld = document.querySelector('.hamburger');
     const navMenu = document.querySelector('nav ul');
     
-    if (hamburger && navMenu) {
-        hamburger.addEventListener('click', function() {
-            hamburger.classList.toggle('active');
+    if (hamburgerOld && navMenu) {
+        hamburgerOld.addEventListener('click', function() {
+            hamburgerOld.classList.toggle('active');
             navMenu.classList.toggle('active');
         });
         
         // Close menu when nav link is clicked
         document.querySelectorAll('nav ul li a').forEach(link => {
             link.addEventListener('click', function() {
-                hamburger.classList.remove('active');
+                hamburgerOld.classList.remove('active');
                 navMenu.classList.remove('active');
             });
         });
@@ -63,3 +88,66 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+function initializeResourcesPage() {
+    const resourcesGrid = document.getElementById('resourcesGrid');
+    const resourceCards = document.querySelectorAll('.resource-card');
+    const categoryBtns = document.querySelectorAll('.category-btn');
+    const searchInput = document.getElementById('resourceSearch');
+    const searchButton = document.getElementById('searchButton');
+    const noResults = document.getElementById('noResults');
+
+    // Filter function
+    function filterResources() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const activeCategory = document.querySelector('.category-btn.active').dataset.category;
+        
+        let hasVisibleCards = false;
+        
+        resourceCards.forEach(card => {
+            const cardCategories = card.dataset.categories.split(',');
+            const cardContent = card.textContent.toLowerCase();
+            
+            // Check if card matches both category and search term
+            const matchesCategory = activeCategory === 'all' || cardCategories.includes(activeCategory);
+            const matchesSearch = searchTerm === '' || cardContent.includes(searchTerm);
+            
+            if (matchesCategory && matchesSearch) {
+                card.style.display = 'flex';
+                hasVisibleCards = true;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        
+        // Show or hide no results message
+        if (hasVisibleCards) {
+            noResults.classList.remove('visible');
+        } else {
+            noResults.classList.add('visible');
+        }
+    }
+    
+    // Category button click handler
+    categoryBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            // Remove active class from all buttons
+            categoryBtns.forEach(b => b.classList.remove('active'));
+            // Add active class to clicked button
+            this.classList.add('active');
+            // Filter resources
+            filterResources();
+        });
+    });
+    
+    // Search functionality
+    searchButton.addEventListener('click', filterResources);
+    searchInput.addEventListener('keyup', function(e) {
+        if (e.key === 'Enter') {
+            filterResources();
+        }
+    });
+
+    // Initial filter
+    filterResources();
+}
