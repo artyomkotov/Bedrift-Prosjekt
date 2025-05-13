@@ -20,21 +20,11 @@ nav {
     font-size: 24px;
     font-family: sans-serif;
     animation: slideInFromLeft 1s ease-out 0.2s both;
-    transition: all 0.3s ease;
-}
-
-.logo:hover {
-    transform: scale(1.05);
 }
 
 .logo img {
     margin-left: 10px;
     margin-right: 10px;
-    transition: all 0.4s ease;
-}
-
-.logo:hover img {
-    transform: rotate(10deg);
 }
 
 nav ul {
@@ -52,7 +42,7 @@ nav ul li a {
     padding: 15px 25px;
     border-radius: 8px;
     background-color: #140152;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     display: inline-block;
     width: 100px; /* Fixed width for all buttons */
     text-align: center;
@@ -64,7 +54,7 @@ nav ul li a {
 
 nav ul li a:hover {
     background-color: #04052E;
-    transform: translateY(-5px) scale(1.05);
+    transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(20, 1, 82, 0.4);
 }
 
@@ -104,7 +94,7 @@ nav ul li {
     height: 3px;
     background-color: white;
     margin: 5px 0;
-    transition: all 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+    transition: all 0.3s ease;
 }
 
 body {
@@ -172,10 +162,9 @@ header #getStarted {
     order: 3;
     position: relative;
     overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     box-shadow: 0 4px 15px rgba(20, 1, 82, 0.5);
     z-index: 1;
-    animation: softPulse 2s infinite alternate;
 }
 
 header #getStarted::before {
@@ -192,7 +181,7 @@ header #getStarted::before {
 
 header #getStarted:hover {
     background-color: #04052E;
-    transform: translateY(-5px) scale(1.05);
+    transform: translateY(-5px);
     box-shadow: 0 6px 20px rgba(20, 1, 82, 0.6);
 }
 
@@ -232,12 +221,6 @@ header #getStarted:hover::before {
     background-color: white;
     border-radius: 50%;
     rotate: 5deg;
-    transition: all 0.5s ease;
-}
-
-.bullet-point img:hover {
-    transform: rotate(10deg) scale(1.1);
-    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
 }
 
 .bullet-point h3 {
@@ -297,12 +280,6 @@ header #getStarted:hover::before {
     padding: 15px;
     box-sizing: border-box;
     animation: slideInFromLeft 1s ease-out 0.5s both;
-    transition: all 0.5s ease;
-}
-
-#placeholderimg:hover {
-    transform: scale(1.02);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 #chat {
@@ -330,17 +307,10 @@ header #getStarted:hover::before {
     position: relative;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(20, 1, 82, 0.3);
-    border: 2px solid #202020;
-    height: 45px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+    height: 45px; /* Control the height explicitly */
     box-sizing: border-box;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.chat-input-container:focus-within {
-    border-color: #140152;
-    box-shadow: 0 4px 20px rgba(20, 1, 82, 0.6), 0 0 10px rgba(66, 133, 244, 0.3);
-    transform: translateY(-2px);
 }
 
 #userInput {
@@ -350,25 +320,16 @@ header #getStarted:hover::before {
     outline: none;
     font-size: 14px;
     height: 100%;
-    background-color: #202020;
-    color: white;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    font-family: Arial, sans-serif;
-    letter-spacing: 0.5px;
+    background-color: white;
+    color: #333;
 }
 
 #userInput::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-    transition: all 0.3s ease;
-}
-
-#userInput:focus::placeholder {
-    opacity: 0.7;
-    transform: translateX(5px);
+    color: #aaa;
 }
 
 #sendButton {
-    background-color: #140152;
+    background-color: #4285f4;
     color: white;
     border: none;
     height: 100%;
@@ -376,35 +337,13 @@ header #getStarted:hover::before {
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    position: relative;
-    overflow: hidden;
-    animation: softPulse 2s infinite alternate;
+    transition: background-color 0.2s;
 }
 
 #sendButton:hover {
-    background-color: #04052E;
-    transform: scale(1.05);
+    background-color: #3367d6;
 }
 
-#sendButton:active {
-    transform: scale(0.95);
-}
-
-#sendButton::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;   
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    transition: left 0.6s;
-}
-
-#sendButton:hover::after {
-    left: 100%;
-}
 
 footer {
     display: flex;
@@ -683,15 +622,7 @@ footer {
     position: relative;
     border-radius: 30px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(20, 1, 82, 0.3);
-    border: 2px solid #202020;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.search-box:focus-within {
-    border-color: #140152;
-    box-shadow: 0 4px 20px rgba(20, 1, 82, 0.6), 0 0 10px rgba(66, 133, 244, 0.3);
-    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 #resourceSearch {
@@ -700,21 +631,8 @@ footer {
     border: none;
     outline: none;
     font-size: 16px;
-    background-color: #202020;
-    color: white;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    font-family: Arial, sans-serif;
-    letter-spacing: 0.5px;
-}
-
-#resourceSearch::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-    transition: all 0.3s ease;
-}
-
-#resourceSearch:focus::placeholder {
-    opacity: 0.7;
-    transform: translateX(5px);
+    background-color: white;
+    color: #333;
 }
 
 #searchButton {
@@ -724,48 +642,42 @@ footer {
     padding: 0 25px;
     font-size: 16px;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: background-color 0.3s;
+}
+
+#searchButton:hover {
+    background-color: #04052E;
+}
+
+/* Category filters */
+.category-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    animation: slideInFromTop 1s ease-out 0.3s both;
+}
+
+.category-btn {
+    background-color: #202020;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s;
     font-weight: 500;
-    position: relative;
-    overflow: hidden;
 }
 
 .category-btn:hover {
     background-color: #140152;
-    transform: translateY(-3px) scale(1.05);
+    transform: translateY(-3px);
     box-shadow: 0 4px 12px rgba(20, 1, 82, 0.3);
-}
-
-.category-btn::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background-color: #ffffff;
-    transform: scaleX(0);
-    transform-origin: bottom right;
-    transition: transform 0.3s ease-out;
-}
-
-.category-btn:hover::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
 }
 
 .category-btn.active {
     background-color: #140152;
-    animation: activeButtonGlow 2s infinite alternate;
-}
-
-@keyframes activeButtonGlow {
-    0% {
-        box-shadow: 0 0 5px rgba(20, 1, 82, 0.5);
-    }
-    100% {
-        box-shadow: 0 0 15px rgba(20, 1, 82, 0.8), 0 0 5px rgba(255, 255, 255, 0.3);
-    }
 }
 
 /* Resources grid */
@@ -781,14 +693,14 @@ footer {
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: transform 0.3s, box-shadow 0.3s;
     display: flex;
     flex-direction: column;
     height: 100%;
 }
 
 .resource-card:hover {
-    transform: translateY(-10px) scale(1.02);
+    transform: translateY(-10px);
     box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
 }
 
@@ -840,12 +752,6 @@ footer {
     padding: 4px 10px;
     border-radius: 12px;
     font-size: 0.8rem;
-    transition: all 0.3s ease;
-}
-
-.resource-tag:hover {
-    background-color: rgba(20, 1, 82, 0.6);
-    transform: translateY(-2px);
 }
 
 .resource-card-body a {
@@ -857,30 +763,11 @@ footer {
     border-radius: 8px;
     text-align: center;
     font-weight: 500;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    position: relative;
-    overflow: hidden;
-    animation: softPulse 2s infinite alternate;
+    transition: background-color 0.3s;
 }
 
 .resource-card-body a:hover {
     background-color: #04052E;
-    transform: scale(1.05);
-}
-
-.resource-card-body a::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: 0.8s;
-}
-
-.resource-card-body a:hover::after {
-    left: 100%;
 }
 
 /* Empty results message */
@@ -944,35 +831,4 @@ footer {
         flex-direction: column;
         align-items: center;
     }
-}
-
-/* Enhanced Button and Interactive Element Animations */
-
-/* Add pulse animation to important buttons */
-header #getStarted, .resource-card-body a, #searchButton {
-    animation: softPulse 2s infinite alternate;
-}
-
-@keyframes softPulse {
-    0% {
-        box-shadow: 0 4px 15px rgba(20, 1, 82, 0.5);
-    }
-    100% {
-        box-shadow: 0 4px 20px rgba(20, 1, 82, 0.8), 0 0 10px rgba(255, 255, 255, 0.2);
-    }
-}
-
-/* Interactive element click feedback animation */
-@keyframes clickFeedback {
-    0% {
-        transform: scale(0.95);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-/* Add this class via JavaScript when elements are clicked */
-.clicked {
-    animation: clickFeedback 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
