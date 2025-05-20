@@ -13,6 +13,15 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Page transition effect
+    window.addEventListener('pageshow', function() {
+        document.body.classList.remove('page-transition');
+    });
+    
+    window.addEventListener('beforeunload', function() {
+        document.body.classList.add('page-transition');
+    });
     
     // Chat functionality
     const userInput = document.getElementById('userInput');

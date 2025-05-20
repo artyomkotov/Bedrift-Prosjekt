@@ -1,15 +1,36 @@
-// Existing script code...
-
 // Mobile Menu Toggle
 document.addEventListener('DOMContentLoaded', function() {
-    // Check if hamburger element exists (for pages that include the mobile menu)
-    const hamburger = document.getElementById('hamburger');
-    if (hamburger) {
+    document.body.classList.add('loaded');
+    // Hamburger menu logic for all pages
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('nav ul');
+    if (hamburger && navMenu) {
+        // Toggle menu open/close on burger click
         hamburger.addEventListener('click', function() {
-            this.classList.toggle('active');
-            document.getElementById('menu').classList.toggle('active');
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+        // Close menu when a nav link is clicked (for mobile UX)
+        navMenu.querySelectorAll('li a').forEach(link => {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
         });
     }
+    document.querySelectorAll('a').forEach(link => {
+    // Only handle internal links (exclude external)
+    if (link.hostname === window.location.hostname) {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const href = link.getAttribute('href');
+            document.body.classList.add('page-transition');
+            setTimeout(() => {
+                window.location.href = href;
+            }, 300); // Match to your CSS transition time
+        });
+    }
+});
 
     // Resources page functionality
     // Only initialize if we're on the resources page
@@ -17,34 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
         initializeResourcesPage();
     }
 
-    // Page transition effect
-    window.addEventListener('pageshow', function() {
-        document.body.classList.remove('page-transition');
-    });
     
-    window.addEventListener('beforeunload', function() {
-        document.body.classList.add('page-transition');
-    });
-
-    // Hamburger menu functionality
-    const hamburgerOld = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('nav ul');
-    
-    if (hamburgerOld && navMenu) {
-        hamburgerOld.addEventListener('click', function() {
-            hamburgerOld.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-        
-        // Close menu when nav link is clicked
-        document.querySelectorAll('nav ul li a').forEach(link => {
-            link.addEventListener('click', function() {
-                hamburgerOld.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-    }
-
     // Chat input functionality
     const userInput = document.getElementById('userInput');
     const sendButton = document.getElementById('sendButton');
