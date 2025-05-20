@@ -220,7 +220,6 @@ header #getStarted:hover::before {
     margin-bottom: 15px;
     background-color: white;
     border-radius: 50%;
-    rotate: 5deg;
 }
 
 .bullet-point h3 {
@@ -343,17 +342,6 @@ header #getStarted:hover::before {
 #sendButton:hover {
     background-color: #3367d6;
 }
-
-
-footer {
-    display: flex;
-    justify-content: center;
-    background-color: #202020;
-    margin: 10px;
-    border-radius: 15px;
-    animation: slideInFromBottom 1s ease-out 0.7s both;
-}
-
 /* Add this to the existing styles.css file for page transitions */
 .page-transition {
     opacity: 0;
@@ -782,6 +770,58 @@ footer {
 
 .no-results.visible {
     display: block;
+}
+
+footer {
+    background-color: #202020;
+    color: white;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 20px;
+    margin: 10px;
+    animation: slideInFromBottom 1s ease-out 0.7s both;
+}
+
+footer .logo {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    font-size: 18px;
+    font-family: sans-serif;
+    animation: slideInFromLeft 1s ease-out 0.2s both;
+}
+
+footer ul {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+footer ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 15px 20px;
+    border-radius: 8px;
+    background-color: #140152;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: inline-block;
+    width: 80px; /* Fixed width for all buttons */
+    text-align: center;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+footer ul li {
+    list-style: none;
+    margin: 0 15px;
+    animation: fadeIn 1s ease-out calc(0.4s + var(--i, 0) * 0.1s) both;
 }
 
 /* Responsive adjustments for resources page */

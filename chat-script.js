@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const newChatBtn = document.getElementById('newChatBtn');
     
     // DeepSeek API configuration
-    const DEEPSEEK_API_URL = 'https://api.deepseek.com/v1/chat/completions';  // Replace with actual API endpoint
+    const DEEPSEEK_API_URL = 'https://api.deepseek.com/v1/chat/completions';  // API endpoint
     const DEEPSEEK_API_KEY = '';  // Replace with your actual API key
     
     // Custom instructions for the AI - only set in code
