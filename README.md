@@ -51,8 +51,8 @@ The idea behind PathfinderAI is to act as a virtual mentor, guiding users throug
 
 ## Credits
 
-- **Frontend & Design:** [@artyomkotov](https://github.com/artyomkotov)
-- **AI Backend:** DeepSeek API
+- **Frontend, Backend & Design:** [@artyomkotov](https://github.com/artyomkotov)
+- **AI part of the Backend:** DeepSeek API
 
 ## License
 
