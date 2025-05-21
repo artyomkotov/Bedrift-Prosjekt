@@ -16,6 +16,9 @@ The idea behind PathfinderAI is to act as a virtual mentor, guiding users throug
 ## Screenshots
 
 ![Home Page](images/homepage.png)
+![Chat Page](images/chatpage.png)
+![Resource Page](images/resourcepage.png)
+![Contact Page](images/contactpage.png)
 
 ## Getting Started
 
